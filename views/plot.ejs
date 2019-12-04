@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dublin Housing - Rented Homes for you</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <style>
+    .fakeimg {
+      height: 200px;
+      background: #aaa;
+    }
+    body {
+      background-color: #83B7C6;
+      background-image: url('images/BCH_community_1.png');
+      background-repeat: no-repeat;
+      background-position: bottom;
+      margin-bottom: 0px ;
+
+    }
+    h1 {
+      background-color: #81B8C6;
+      font-size: 45px;
+    }
+    h4 { color: #000000;
+    }
+
+    p {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: .8rem;
+      color: gray;
+      padding: 1rem 0;
+    }
+
+    hr {
+      border-style: inset;
+      border-width: 2px;
+
+    }
+
+    span {
+      background-color: #696969);
+color: #000000;
+font-size: 30px;
+}
+
+
+.btn-info {
+  font-size: 18px;
+  background-color: #93a6b8;
+  padding: 10px 25px;
+  margin: 0px 10px 0px 10px;
+}
+
+.select-holder{
+  font-size: 20px;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #83B7C6;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: #83B7C6;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  margin-top: -20px;
+  left: 0%;
+  text-align: center;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #83B7C6;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: #f1f1f1;
+  float: left;
+  border: 1px solid #ddd;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 18px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  overflow: hidden;
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  overflow: hidden;
+  background-color: #ababab;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+
+
+</style>
+</head>
+<body onLoad="buildHtmlTable('#excelDataTable')">
+
+  <div class="jumbotron" style="margin-top: -70px; text-align: center;">
+   <h1>Dublin Housing</h1>
+   <p  style="font-size: 18px; background-color: #77B5C6; font-family: monospace; color: black;">No reservation costs. Great rates. Book at over 1,400,000 hotels online. We speak your language. 24/7 Customer Service. Read Real Guest Reviews. Best Price Guarantee. No Booking Fees. Get Instant Confirmation. Types: Hotels, Apartments, Villas, Hostels, Resorts.</p>
+ </div>
+
+ <div class="container" align="center">
+  <div  class="split left" style="border-style: groove; border-color: #83B7C6; height: 480px; margin-top: 145px;">
+    <div class="centered">
+     <p style="font-size: 30px; color: black; margin-left: 60px;"> Results </p>
+     <table id="excelDataTable" border="2" style="width: 400px; margin-left: 120px;">
+     </table>
+
+     <script>
+      var myList = [ {"Area":"\"Dublin10\"","Year":2009,"Quarter":1,"Average Rent":879}
+      ];
+
+
+      function buildHtmlTable(selector) {
+        var columns = addAllColumnHeaders(myList, selector);
+
+        for (var i = 0; i < myList.length; i++) {
+          var row$ = $('<tr/>');
+          for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+            var cellValue = myList[i][columns[colIndex]];
+            if (cellValue == null) cellValue = "";
+            row$.append($('<td/>').html(cellValue));
+          }
+          $(selector).append(row$);
+        }
+      }
+
+// Adds a header row to the table and returns the set of columns.
+// Need to do union of keys from all records as some records may not contain
+// all records.
+function addAllColumnHeaders(myList, selector) {
+  var columnSet = [];
+  var headerTr$ = $('<tr/>');
+
+  for (var i = 0; i < myList.length; i++) {
+    var rowHash = myList[i];
+    for (var key in rowHash) {
+      if ($.inArray(key, columnSet) == -1) {
+        columnSet.push(key);
+        headerTr$.append($('<th/>').html(key));
+      }
+    }
+  }
+  $(selector).append(headerTr$);
+
+  return columnSet;
+}
+</script>
+
+</div>
+</div>
+
+<div  class="split right" style="border-style: groove; border-color: #83B7C6; height: 480px; margin-top: 145px;">
+  <div class="centered">
+   <div class="tab" >
+     <button class="tablinks" onclick="openCity(event, 'Trends')" id="defaultOpen">Trends</button>
+     <button class="tablinks" onclick="openCity(event, 'Forecast')">Forecast</button>
+   </div>
+
+
+   <div id="Trends" class="tabcontent">
+    <img src="<%= trends_img %>">
+
+
+   </div>
+
+   <div id="Forecast" class="tabcontent">
+    <img src="<%= forecast_img %>">
+   </div>
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+
+</script>
+
+
+ </body>
+ </html>

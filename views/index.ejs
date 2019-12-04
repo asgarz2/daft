@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dublin Housing - Rented Homes for you</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script language="javascript" type="text/javascript" src="asd.js"></script>
+  <style>
+    .fakeimg {
+      height: 200px;
+      background: #aaa;
+    }
+    body {
+      background-color: #83B7C6;
+      background-image: url('images/BCH_community_1.png');
+      background-repeat: no-repeat;
+      background-position: bottom;
+
+    }
+    h1 {
+      background-color: #81B8C6;
+      font-size: 45px;
+    }
+    h4 { color: #000000;
+    }
+
+    p {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: .8rem;
+      color: gray;
+      padding: 1rem 0;
+    }
+
+    hr {
+      border-style: inset;
+      border-width: 2px;
+
+    }
+
+    span {
+      background-color: #696969);
+color: #000000;
+font-size: 30px;
+}
+
+
+#myDiv{
+  border: black;
+  border-style: ridge;
+  width: 700px;
+  height: 395px;
+
+}
+
+.btn-info {
+  font-size: 18px;
+  background-color: #93a6b8;
+  padding: 10px 25px;
+  margin: 0px 10px 0px 10px;
+}
+
+.select-holder{
+  font-size: 20px;
+}
+
+
+
+
+</style>
+</head>
+<body >
+
+  <div class="jumbotron" style="margin-top: -70px; text-align: center;">
+    <h1>Dublin Housing</h1>
+    <p  style="font-size: 18px; background-color: #77B5C6; font-family: monospace; color: black;">No reservation costs. Great rates. Book at over 1,400,000 hotels online. We speak your language. 24/7 Customer Service. Read Real Guest Reviews. Best Price Guarantee. No Booking Fees. Get Instant Confirmation. Types: Hotels, Apartments, Villas, Hostels, Resorts.</p>
+  </div>
+
+  <nav class="navbar navbar-inverse" style="margin-top: -88px;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      <!--<a class="navbar-brand" href="#">About Us</a>
+        <a class="navbar-brand" href="#">Help</a> -->
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#" style="font-size: 18px;">Home</a></li>
+          <li><a href="#" style="font-size: 18px;">About Us</a></li>
+          <li><a href="help.htmls" style="font-size: 18px;">Help</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div id="myDiv" class="container" align="center">
+
+    <p style="color: #000000; font-size: 30px; margin-top: 00px; text-align: center; word-wrap: all; width: 500px;" >Select from following criteria for desired availability of accomodation:</p>
+
+
+    <div class="search-box">
+      <form action="/plots" method="post" class="search-form clearfix ng-pristine ng-valid" >
+        <div class="cell">
+          <div class="select-holder" style="padding: 10px 10px 10px 10px;">
+            <span class="abc " style="color: #000000">Select county/city:</span></span></span>
+            <select id="selectCityCountry" name="city" style="width: 210px; height: 25px; margin-left: 100px;" required="required">
+
+              <option selected="selected" value="">Select Area/County</option>
+              <option value="Dublin1" >Dublin1</option>
+              <option value="Dublin2" >Dublin2</option>
+              <option value="Dublin3" >Dublin3</option>
+              <option value="Dublin4" >Dublin4</option>
+              <option value="Dublin5" >Dublin5</option>
+              <option value="Dublin6" >Dublin6</option>
+              <option value="Dublin6" >Dublin6</option>
+              <option value="Dublin6W" >Dublin6W</option>
+              <option value="Dublin7" >Dublin7</option>
+              <option value="Dublin8" >Dublin8</option>
+              <option value="Dublin9" >Dublin9</option>
+              <option value="Dublin10">Dublin10</option>
+              <option value="Dublin11" >Dublin11</option>
+              <option value="Dublin12" >Dublin12</option>
+              <option value="Dublin13" >Dublin13</option>
+              <option value="Dublin14" >Dublin14</option>
+              <option value="Dublin15" >Dublin15</option>
+              <option value="Dublin16" >Dublin16</option>
+              <option value="Dublin17" >Dublin17</option>
+              <option value="Dublin18" >Dublin18</option>
+
+              <option value="Dublin20" >Dublin20</option>
+
+              <option value="Dublin22" >Dublin22</option>
+
+              <option value="Dublin24" >Dublin24</option>
+
+            </select>
+          </div>
+        </div>
+        <div class="cell">
+          <div id="choose-an-area" class="choose-an-area">
+            <div style="display: none;">
+              <div class="holder jcf-scrollable">
+                <!-- ngRepeat: column in areas -->
+                <div class="column" ng-show="!areas.length">
+                  <div class="checkbox-holder">
+                    No properties available in this area.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cell ng-hide" ng-hide="searchData.adType === 'sale'">
+          <div class="select-holder"  style="padding: 10px 10px 10px 10px;">
+            <span style="color: #000000" >Number of beds:</span>
+
+            <select name="bhk" id="selectPropertyType" style="width: 210px; height: 25px; align-content: center; margin-left: 120px;">
+              <option value="" selected="selected" label="" style="width: 200px; height: 25px; align-content: center;">----</option>
+
+              <option value="1bhk" >1 bed</option>
+              <option value="2bhk" >2 bed</option>
+              <option value="3bhk" >3 bed</option>
+              <option value="4bhk" >4 bed</option>
+              <option value="5bhk" >5 bed</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="cell ng-hide">
+        <div class="select-holder"  style="padding: 10px 10px 10px 10px;">
+         <span style="color: #000000">Rent Range:</span>
+
+         <select id="selectPropertyType" name="price" style="width: 210px; height: 25px; align-content: center; margin-left: 175px;">
+          <option value="?" selected="selected" label="" style="width: 200px; height: 25px; align-content: center;"></option>
+          <option selected="selected" value="" class="ng-binding" style="align-items: center;">----</option>
+
+          <option value="0 AND 500">0-500</option>
+          <option value="500 AND 1000">500-1000</option>
+          <option value="1000 AND 1500">1000-1500</option>
+          <option value="1500 AND 2000">1500-2000</option>
+          <option value="2000 AND 2500">2000-2500</option>
+          <option value="2500 AND 3000">2500-3000</option>
+          <option value="3000 AND 5000"> >3000</option>
+        </select>
+      </div>
+    </div>
+
+
+    <button class="btn btn-primary btn-search" type="submit" value="Submit" style="padding: 10px 25px;  margin: 20px 10px 0px 10px; font-size: 20px;">Search</button>
+
+  </div>
+</form>
+
+<script>
+//   function testJS() {
+//     var a = document.getElementById('selectCityCountry').value,
+//         url1 = 'file:///C:/Users/avkal/Desktop/html/next.html?selectCityCountry=' + encodeURIComponent(b);
+
+//     document.location.href = url1 ;
+// }
+
+
+</script>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
