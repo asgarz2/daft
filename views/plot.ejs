@@ -133,7 +133,7 @@ font-size: 30px;
 
 </style>
 </head>
-<body onLoad="buildHtmlTable('#excelDataTable')">
+<body>
 
   <div class="jumbotron" style="margin-top: -70px; text-align: center;">
    <h1>Dublin Housing</h1>
@@ -144,48 +144,70 @@ font-size: 30px;
   <div  class="split left" style="border-style: groove; border-color: #83B7C6; height: 480px; margin-top: 145px;">
     <div class="centered">
      <p style="font-size: 30px; color: black; margin-left: 60px;"> Results </p>
-     <table id="excelDataTable" border="2" style="width: 400px; margin-left: 120px;">
+     <table id="rent-table" border="2" style="width: 400px; margin-left: 120px;">
+
+
+    <thead>
+        <tr class="home">
+            <th>Area</th>
+            <th>Year</th>
+            <th>Quarter</th>
+            <th>Average Rent</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% data.forEach(function(row){ %>
+         <tr>
+            <td><%= row.Area %></td>
+            <td><%= row.Year %></td>
+            <td><%= row.Quarter %></td>
+            <td><%= row.Average_Rent %></td>
+        </tr>
+        <% }); %>
+
+    </tbody>
+
      </table>
 
      <script>
-      var myList = [ {"Area":"\"Dublin10\"","Year":2009,"Quarter":1,"Average Rent":879}
-      ];
+//       var myList = [ {"Area":"\"Dublin10\"","Year":2009,"Quarter":1,"Average Rent":879}
+//       ];
 
 
-      function buildHtmlTable(selector) {
-        var columns = addAllColumnHeaders(myList, selector);
+//       function buildHtmlTable(selector) {
+//         var columns = addAllColumnHeaders(myList, selector);
 
-        for (var i = 0; i < myList.length; i++) {
-          var row$ = $('<tr/>');
-          for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-            var cellValue = myList[i][columns[colIndex]];
-            if (cellValue == null) cellValue = "";
-            row$.append($('<td/>').html(cellValue));
-          }
-          $(selector).append(row$);
-        }
-      }
+//         for (var i = 0; i < myList.length; i++) {
+//           var row$ = $('<tr/>');
+//           for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+//             var cellValue = myList[i][columns[colIndex]];
+//             if (cellValue == null) cellValue = "";
+//             row$.append($('<td/>').html(cellValue));
+//           }
+//           $(selector).append(row$);
+//         }
+//       }
 
-// Adds a header row to the table and returns the set of columns.
-// Need to do union of keys from all records as some records may not contain
-// all records.
-function addAllColumnHeaders(myList, selector) {
-  var columnSet = [];
-  var headerTr$ = $('<tr/>');
+// // Adds a header row to the table and returns the set of columns.
+// // Need to do union of keys from all records as some records may not contain
+// // all records.
+// function addAllColumnHeaders(myList, selector) {
+//   var columnSet = [];
+//   var headerTr$ = $('<tr/>');
 
-  for (var i = 0; i < myList.length; i++) {
-    var rowHash = myList[i];
-    for (var key in rowHash) {
-      if ($.inArray(key, columnSet) == -1) {
-        columnSet.push(key);
-        headerTr$.append($('<th/>').html(key));
-      }
-    }
-  }
-  $(selector).append(headerTr$);
+//   for (var i = 0; i < myList.length; i++) {
+//     var rowHash = myList[i];
+//     for (var key in rowHash) {
+//       if ($.inArray(key, columnSet) == -1) {
+//         columnSet.push(key);
+//         headerTr$.append($('<th/>').html(key));
+//       }
+//     }
+//   }
+//   $(selector).append(headerTr$);
 
-  return columnSet;
-}
+//   return columnSet;
+// }
 </script>
 
 </div>
@@ -203,30 +225,33 @@ function addAllColumnHeaders(myList, selector) {
     <img src="<%= trends_img %>">
 
 
-   </div>
+  </div>
 
-   <div id="Forecast" class="tabcontent">
+  <div id="Forecast" class="tabcontent">
     <img src="<%= forecast_img %>">
-   </div>
+  </div>
+</div>
+</div>
+</div>
 
 <script>
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
   }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-document.getElementById("defaultOpen").click();
+  document.getElementById("defaultOpen").click();
 
 </script>
 
 
- </body>
- </html>
+</body>
+</html>

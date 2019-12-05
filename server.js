@@ -23,8 +23,14 @@ app.post('/plots', function (req, res) {
   var forecast_image_path = "images/forecast/" + city + "_" + bhk + "_forecast.png"
   console.log(trends_image_path);
   console.log(forecast_image_path);
-  res.render('plot.ejs',{trends_img: trends_image_path, forecast_img: forecast_image_path});
-  // let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+
+  var data = [{"Area":"Dublin1", "Year":2019, "Quarter":1, "Average_Rent":1589},{"Area":"Dublin1", "Year":2019, "Quarter":1, "Average_Rent":1589}];
+
+  res.render('plot.ejs',{trends_img: trends_image_path, forecast_img: forecast_image_path, data: data});
+
+
+
+//   let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
 // request(url, function (err, response, body) {
 //     if(err){
 //       res.render('index', {weather: null, error: 'Error, please try again'});
