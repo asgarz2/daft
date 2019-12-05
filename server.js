@@ -30,7 +30,7 @@ app.post('/plots', function (req, res) {
 
 
 
-//   let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
+//   let url = ``
 // request(url, function (err, response, body) {
 //     if(err){
 //       res.render('index', {weather: null, error: 'Error, please try again'});

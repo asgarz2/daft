@@ -5,9 +5,17 @@ It is a nodejs application.
 
 **Node.js** : Visit the official Node.js website to download and install Node
 
-# Start Server
-  - npm start
+# Install Express
+  - npm install express --save
 
+# Install PM2
+  - npm install pm2 -g
+
+# Start Server
+  - pm2 start server.js
+
+# Stop Server
+   - pm2 stop server.js
 
 **You can open browser:**
   - Enter http://localhost:3000/
