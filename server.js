@@ -2,6 +2,13 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const app = express()
 
+const dotenv = require('dotenv');
+dotenv.config();
+
+const PORT = process.env.PORT || 8080;
+const URL = process.env.API_URL;
+console.log(`Your port is ${PORT}`);
+
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'));
@@ -47,6 +54,6 @@ app.post('/plots', function (req, res) {
 
 })
 
-app.listen(3000, function () {
+app.listen(PORT, function () {
   console.log('Example app listening on port 3000!')
 })

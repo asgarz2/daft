@@ -8,10 +8,14 @@
   },
   "author": "Zeeshan Asgar",
   "license": "ISC",
+  "repository": {
+  "type" : "git",
+  "url" : "https://github.com/asgarz2/daft.git"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
-    "ejs-lint": "^0.3.0",
     "express": "^4.17.1"
   }
 }

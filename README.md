@@ -11,6 +11,9 @@ It is a nodejs application.
 # Install PM2
   - npm install pm2 -g
 
+# Install dotenv
+  - npm install dotenv
+
 # Start Server
   - pm2 start server.js
 
