@@ -20,5 +20,13 @@ It is a nodejs application.
 # Stop Server
    - pm2 stop server.js
 
+# GCP deployment:
+**Acquire local credentials for authenticating with Google Cloud Platform APIs:**
+  - gcloud auth application-default login
+
+**Use gcloud sdk to deploy**
+  - gcloud app deploy
+
+
 **You can open browser:**
   - Enter http://localhost:3000/
