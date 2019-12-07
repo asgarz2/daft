@@ -29,10 +29,11 @@ app.post('/plots', function (req, res) {
   var price = req.body.price;
   var trends_image_path = "images/trends/" + city + "_" + bhk + "_trend.png"
   var forecast_image_path = "images/forecast/" + city + "_" + bhk + "_forecast.png"
+  var bhk_for_request = bhk.replace("bhk","_Bed_Avg_monthly_rent")
 
   var data = [{"Area":"Dublin1", "Year":2019, "Quarter":1, "Average_Rent":1589},{"Area":"Dublin1", "Year":2019, "Quarter":1, "Average_Rent":1589}];
 
-  let url = URL + `?areas=` + city + `&beds=` + bhk;
+  let url = URL + `?areas=` + city + `&beds=` + bhk_for_request;
   request(url, function (err, response, body) {
     console.log(`here`);
     if(err){
