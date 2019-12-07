@@ -7,7 +7,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 8080;
 const URL = process.env.API_URL;
-console.log(`Your port is ${PORT}`);
+
 
 
 app.set('view engine', 'ejs')
@@ -28,32 +28,18 @@ app.post('/plots', function (req, res) {
   var price = req.body.price;
   var trends_image_path = "images/trends/" + city + "_" + bhk + "_trend.png"
   var forecast_image_path = "images/forecast/" + city + "_" + bhk + "_forecast.png"
-  console.log(trends_image_path);
-  console.log(forecast_image_path);
 
   var data = [{"Area":"Dublin1", "Year":2019, "Quarter":1, "Average_Rent":1589},{"Area":"Dublin1", "Year":2019, "Quarter":1, "Average_Rent":1589}];
 
+  let url = URL + `?areas=` + city + `&beds=` + bhk;
+  request(url, function (err, response, body) {
+    if(!err){
+      data = JSON.parse(body)
+    }
+  });
   res.render('plot.ejs',{trends_img: trends_image_path, forecast_img: forecast_image_path, data: data});
-
-
-
-//   let url = ``
-// request(url, function (err, response, body) {
-//     if(err){
-//       res.render('index', {weather: null, error: 'Error, please try again'});
-//     } else {
-//       let weather = JSON.parse(body)
-//       if(weather.main == undefined){
-//         res.render('index', {weather: null, error: 'Error, please try again'});
-//       } else {
-//         let weatherText = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-//         res.render('index', {weather: weatherText, error: null});
-//       }
-//     }
-//   });
-
 })
 
 app.listen(PORT, function () {
-  console.log('Example app listening on port 3000!')
+  console.log(`Your port is ${PORT}`);
 })
