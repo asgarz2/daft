@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser');
+const request = require('request');
 const app = express()
 
 const dotenv = require('dotenv');
@@ -33,6 +34,7 @@ app.post('/plots', function (req, res) {
 
   let url = URL + `?areas=` + city + `&beds=` + bhk;
   request(url, function (err, response, body) {
+    console.log(`here`);
     if(!err){
       data = JSON.parse(body)
     }
