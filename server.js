@@ -35,11 +35,17 @@ app.post('/plots', function (req, res) {
   let url = URL + `?areas=` + city + `&beds=` + bhk;
   request(url, function (err, response, body) {
     console.log(`here`);
-    if(!err){
-      data = JSON.parse(body)
+    if(err){
+      console.log("Request error");
+      res.render('plot.ejs',{trends_img: trends_image_path, forecast_img: forecast_image_path, data: data});
+    }
+    else
+    {
+      data = body
+      res.render('plot.ejs',{trends_img: trends_image_path, forecast_img: forecast_image_path, data: data});
     }
   });
-  res.render('plot.ejs',{trends_img: trends_image_path, forecast_img: forecast_image_path, data: data});
+
 })
 
 app.listen(PORT, function () {
