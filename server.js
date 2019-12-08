@@ -29,25 +29,25 @@ app.post('/plots', function (req, res) {
   var price = req.body.price;
   var trends_image_path = "images/trends/" + city + "_" + bhk + "_trend.png"
   var forecast_image_path = "images/forecast/" + city + "_" + bhk + "_forecast.png"
-  var bhk_for_request = bhk.replace("bhk","_Bed_Avg_monthly_rent")
+  var bhk_for_request = bhk.replace("bhk","")
 
   var data = [{"Area":"Dublin1", "Year":2019, "Quarter":1, "Average_Rent":1589},{"Area":"Dublin1", "Year":2019, "Quarter":1, "Average_Rent":1589}];
 
-  let url = URL + `?areas=` + city + `&beds=` + bhk_for_request;
 
   var options = {
-      url:  url,
-      timeout: 300000
-  }
+      url:  URL,
+      timeout: 300000,
+      qs: { areas: city, beds: bhk_for_request }
+  };
   request(options, function (err, response, body) {
-    console.log(`here`);
+
     if(err){
       console.log("Request error");
       res.render('plot.ejs',{trends_img: trends_image_path, forecast_img: forecast_image_path, data: data});
     }
     else
     {
-      data = body
+      data = JSON.parse(body)
       res.render('plot.ejs',{trends_img: trends_image_path, forecast_img: forecast_image_path, data: data});
     }
   });
