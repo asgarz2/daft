@@ -34,7 +34,12 @@ app.post('/plots', function (req, res) {
   var data = [{"Area":"Dublin1", "Year":2019, "Quarter":1, "Average_Rent":1589},{"Area":"Dublin1", "Year":2019, "Quarter":1, "Average_Rent":1589}];
 
   let url = URL + `?areas=` + city + `&beds=` + bhk_for_request;
-  request(url, function (err, response, body) {
+
+  var options = {
+      url:  url,
+      timeout: 300000
+  }
+  request(options, function (err, response, body) {
     console.log(`here`);
     if(err){
       console.log("Request error");
